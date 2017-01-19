@@ -3,9 +3,9 @@
 <head>
 	<title></title>
 	<meta http-equiv="Content-Language" content="fr" />
-	<link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="vues/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="bootstrap/dist/js/bootstrap.min.js"></script>
-	<link href="style.css" rel="stylesheet" type="text/css" />
+	<link href="vues/style.css" rel="stylesheet" type="text/css" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 	<body>

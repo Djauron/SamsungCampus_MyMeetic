@@ -107,11 +107,6 @@ body
 	margin: 100px 0px 40px 570px;
 }
 
-#avatar
-{
-	float: left;
-}
-
 .profile
 {
 	margin: 2% 25%;
@@ -155,13 +150,13 @@ body
 
 .send_img
 {
-    margin: 2% 0% 0% 45%;
+    margin: 2% 0% 0% 5%;
 }
 
 #avatar
 {
 	float: left;
-	margin: 1% 0% 0% 39%;
+	margin: 1% 0% 0% 20%;
 }
 
 .search_profile
@@ -237,4 +232,24 @@ body
 input
 {
 	color: black;
+}
+
+#bouton_chg
+{
+	margin-left: 375px;
+}
+
+.formu_recherche p
+{
+	color: black;
+}
+
+#buton_noir
+{
+	color: black;
+}
+
+#supprimer_compte
+{
+	margin-left: 75%;
 }

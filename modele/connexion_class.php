@@ -38,7 +38,7 @@ class Connexion
 				}
 				else
 				{
-					$this->error = "Vous avez ete banni !";
+					$this->error = "Ce compte n'existe plus !";
 					return false;
 				}	
 	    	}

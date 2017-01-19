@@ -14,6 +14,6 @@ elseif(!empty($_GET['page']) && is_file("controleur/".$_GET['page'].".php"))
 }
 else
 {
-	include("vue/denied_access.php");
+	include("vues/denied_access.php");
 }
 ?>

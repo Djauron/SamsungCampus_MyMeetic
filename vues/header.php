@@ -10,7 +10,8 @@
       { 
       ?> 
         <li><a href="index.php?page=profile">Mon profil</a></li>
-        <?php 
+        <li><a href="index.php?page=recherche">Rechercher</a></li>
+        <?php
       }
       ?>
       </ul>
