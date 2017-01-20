@@ -23,13 +23,13 @@
 				<option value="femme">Femme</option>
 				<option value="autre">Autre...</option>
 			</select></P>
-			<P><label for="recherche_pays">Pays</label>
+			<P><label id="recherche_pays">Pays</label>
 			<input type="text" name="recherche_pays"></p>
-			<P><label for="recherche_region">Region</label>
+			<P><label id="recherche_region">Region</label>
 			<input type="text" name="recherche_region"></p>
-			<P><label for="recherche_departement">Departement</label>
+			<P><label id="recherche_departement">Departement</label>
 			<input type="text" name="recherche_departement"></p>
-			<P><label for="recherche_ville">Ville</label>
+			<P><label id="recherche_ville">Ville</label>
 			<input type="text" name="recherche_ville"></p>
 			<p><input type="submit" name="recherche_profil_sexe" value="Rechercher"></p>
 		</form>
@@ -38,29 +38,31 @@
 	<h1 class="titreprofil"> PROFILE </h1>
 	<div class="profile">
 		<div>
-			<table>
-				<?php
-				if(isset($resultat_profil))
-				{
-					foreach($resultat_profil as $trie_profil)
+			<form action="index.php?page=profile" method="POST">
+				<table>
+					<?php
+					if(isset($resultat_profil))
 					{
-						?>
-						<tr>
-						<?php
-						echo "<td>".$trie_profil['pseudo']."</td>";
-						echo "<td>".$trie_profil['sexe']."</td>";
-						echo "<td>".$trie_profil['date_naissance']."</td>";
-						echo "<td><img style='height:100px; width:100px;' src=".$trie_profil['avatar']."></td>";
-						?>
-						<form action="index.php?page=profile" method="POST">
-						<td><button name="valid_recherche" id="buton_noir" value="<?php echo $trie_profil['id']?>">Voir profil</button></td>
-						</form>
-						</tr>
-						<?php
+						foreach($resultat_profil as $trie_profil)
+						{
+							$age = (time() - strtotime($trie_profil['date_naissance'])) / 3600 / 24 / 365;
+							?>
+							<tr>
+								<?php
+								echo "<td>".$trie_profil['pseudo']."</td>";
+								echo "<td>".$trie_profil['sexe']."</td>";
+								echo "<td>".floor($age)."</td>";
+								echo "<td><img alt='image profil' style='height:100px; width:100px;' src=".$trie_profil['avatar']."></td>";
+								?>
+								
+									<td><button name="valid_recherche" class="buton_noir" value="<?php echo $trie_profil['id']?>">Voir profil</button></td>
+							</tr>
+							<?php
+						}
 					}
-				}
-				?>
-			</table>
+					?>
+				</table>
+			</form>
 		</div>
 		<?php if(isset($info_membre) && $info_membre == true){?>
 		<form method="post">

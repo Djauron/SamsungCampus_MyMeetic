@@ -33,10 +33,19 @@ class Membre
 		$this->ville = htmlspecialchars($ville);
 
 
-		if($this->pseudo($db) && $this->mdp() && $this->email() && $this->sexe() && $this->pays() && $this->region() && $this->departement() && $this->ville())
+		if($this->pseudo($db) && $this->mdp() && $this->email() && $this->sexe() && $this->pays() && $this->region() && $this->departement() && $this->ville() && $this->date_n())
 		{
-			$requete->RequeteInscription($this->nom,$this->prenom,$this->date_naissance,$this->email,$this->pseudo,$this->mdp, $this->sexe, $this->pays, $this->region, $this->departement, $this->ville,$db);
-			$this->valid = "Votre compte a ete cree <a href='index.php?page=connexion'> Se connecter maintenant </a>";
+			$longueur_key = 8;
+			$key = "";
+			for($i=1; $i < $longueur_key; $i++)
+			{
+				$key .= mt_rand(0,15);
+			}
+
+			$mail = new email($this->email, $this->pseudo, $key);
+
+			$requete->RequeteInscription($this->nom,$this->prenom,$this->date_naissance,$this->email,$this->pseudo,$this->mdp, $this->sexe, $this->pays, $this->region, $this->departement, $this->ville, $key, $db);
+			$this->valid = "Veuillez confirmer votre inscription avec le mail que vous avez recu.";
 		}
 	}
 
@@ -60,7 +69,7 @@ class Membre
 		}
 		else
 		{
-			$this->error = "veuillez remplir tout les champs peuso!";
+			$this->error = "veuillez remplir tout les champs !";
 			return false;
 		}
 	}
@@ -81,9 +90,31 @@ class Membre
 		}
 		else
 		{
-			$this->error = "veuillez remplir tout les champs 2!";
+			$this->error = "veuillez remplir tout les champs !";
 			return false;
 		}       
+	}
+
+	public function date_n()
+	{
+		if(!empty($this->date_naissance))
+		{
+			$age = (time() - strtotime($this->date_naissance)) / 3600 / 24 / 365;
+			if(floor($age) >= 18)
+			{
+				return true;
+			}
+			else
+			{
+				$this->error = "Vous devez etre majeur pour vous inscrire ! ";
+				return false;
+			}
+		}
+		else
+		{
+			$this->error = "veuillez remplir tout les champs !";
+			return false;
+		}
 	}
        
     public function email()
@@ -123,7 +154,7 @@ class Membre
 	    }
 	    else
 	    {
-	    	$this->error = "veuillez remplir tout les champs 4!";
+	    	$this->error = "veuillez remplir tout les champs !";
 	    	return false;
 	    }
     }
@@ -145,7 +176,7 @@ class Membre
 	    }
 	    else
 	    {
-	    	$this->error = "veuillez remplir tout les champs 5!";
+	    	$this->error = "veuillez remplir tout les champs !";
 	    	return false;
 	    }
     }
@@ -167,7 +198,7 @@ class Membre
 	    }
 	    else
 	    {
-	    	$this->error = "veuillez remplir tout les champs 6!";
+	    	$this->error = "veuillez remplir tout les champs !";
 	    	return false;
 	    }
     }
@@ -189,7 +220,7 @@ class Membre
 	    }
 	    else
 	    {
-	    	$this->error = "veuillez remplir tout les champs 7!";
+	    	$this->error = "veuillez remplir tout les champs !";
 	    	return false;
 	    }
     }
@@ -211,7 +242,7 @@ class Membre
 	    }
 	    else
 	    {
-	    	$this->error = "veuillez remplir tout les champs 8!";
+	    	$this->error = "veuillez remplir tout les champs !";
 	    	return false;
 	    }
     }

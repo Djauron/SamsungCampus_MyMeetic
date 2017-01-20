@@ -25,22 +25,30 @@ class Connexion
 			if ($verifco==1) 
 			{
 				$userinfo = $requete->RequeteInfoUser($this->pseudo , $this->mdp , $db);
-				if($userinfo['active'] == 0)
+				if($userinfo['confirme'] == 1)
 				{
-					$_SESSION['id'] = $userinfo['id'];
-					$_SESSION['pseudo'] = $userinfo['pseudo'];
-					$_SESSION['email'] = $userinfo['email'];
-					$_SESSION['nom'] = $userinfo['nom'];
-					$_SESSION['prenom'] = $userinfo['prenom'];
-					$_SESSION['avatar'] = $userinfo['avatar'];
-					$_SESSION['naissance'] = $userinfo['date_naissance'];
-					return true;
+					if($userinfo['active'] == 0)
+					{
+						$_SESSION['id'] = $userinfo['id'];
+						$_SESSION['pseudo'] = $userinfo['pseudo'];
+						$_SESSION['email'] = $userinfo['email'];
+						$_SESSION['nom'] = $userinfo['nom'];
+						$_SESSION['prenom'] = $userinfo['prenom'];
+						$_SESSION['avatar'] = $userinfo['avatar'];
+						$_SESSION['naissance'] = $userinfo['date_naissance'];
+						return true;
+					}
+					else
+					{
+						$this->error = "Ce compte n'existe plus !";
+						return false;
+					}
 				}
 				else
 				{
-					$this->error = "Ce compte n'existe plus !";
-					return false;
-				}	
+						$this->error = "Veuillez confirmer votre compte !";
+						return false;
+				}
 	    	}
 			else
 			{

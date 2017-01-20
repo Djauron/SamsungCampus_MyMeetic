@@ -1,6 +1,7 @@
 <?php
 
 require_once("modele/membre_class.php");
+require_once("modele/email_class.php");
 
 
 if(isset($_POST['valid']))

@@ -3,9 +3,9 @@
 Class Requete
 {
 
-	public function RequeteInscription($nom, $prenom,$date_naissance,$email,$pseudo,$mdp, $sexe, $pays, $region, $departement, $ville,$db)
+	public function RequeteInscription($nom, $prenom,$date_naissance,$email,$pseudo,$mdp, $sexe, $pays, $region, $departement, $ville, $key,$db)
 	{
-		$req="INSERT INTO membre(id, nom, prenom, date_naissance, email, pseudo, mdp, sexe, pays, region, departement, ville) VALUES ('','$nom','$prenom','$date_naissance','$email','$pseudo','$mdp', '$sexe', '$pays', '$region', '$departement', '$ville')";
+		$req="INSERT INTO membre(id, nom, prenom, date_naissance, email, pseudo, mdp, sexe, pays, region, departement, ville, confirmkey) VALUES ('','$nom','$prenom','$date_naissance','$email','$pseudo','$mdp', '$sexe', '$pays', '$region', '$departement', '$ville', '$key')";
 		$db->exec($req);
 	}
 
@@ -148,6 +148,25 @@ Class Requete
 		$db->exec($req_ban);
 	}
 
+	public function requeteVerifKey($pseudo, $key, $db)
+	{
+		$requser = $db->prepare("SELECT * FROM membre WHERE pseudo = ? AND confirmkey = ?");
+		$requser->execute(array($pseudo, $key));
+      	return $requser->rowCount();
+	}
+
+	public function requeteRecupKey($pseudo, $key, $db)
+	{
+		$requser = $db->prepare("SELECT * FROM membre WHERE pseudo = ? AND confirmkey = ?");
+		$requser->execute(array($pseudo, $key));
+      	return $requser->fetch();
+	}
+
+	public function requeteConfirmKey($pseudo, $key, $db)
+	{
+		$requser = $db->prepare("UPDATE membre SET confirme = '1' where pseudo = ?");
+		$requser->execute(array($pseudo));
+	}
 }
 
 $requete = new Requete;
