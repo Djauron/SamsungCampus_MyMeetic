@@ -13,7 +13,7 @@ class email
 	public function envoieMail($mail,$pseudo,$key)
 	{
 		$header = "MIME-Version: 1.0\r\n";
-		$header.= 'From:"MyMeetic"<sinan.epitech@gmail.com>'."\n";
+		$header.= 'From:"MyMeetic"<HereEmail>'."\n";
 		$header.= 'Content-Type:text/html; charset="utf-8"'."\n";
 		$header.= 'Content-Transfer-Encoding: 8bit';
 
@@ -21,7 +21,7 @@ class email
 		<html>
 			<body>
 				<div align="center">
-					<a href="http://meetic.local?page=confirmation&pseudo='.$pseudo.'&key='.$key.'"> Confimez votre compte </a>
+					<a href="http://localhost/PHP_my_meetic?page=confirmation&pseudo='.$pseudo.'&key='.$key.'"> Confimez votre compte </a>
 				</div>
 			</body>
 		</html>			

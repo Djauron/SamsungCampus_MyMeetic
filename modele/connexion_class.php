@@ -9,7 +9,7 @@ class Connexion
 	{
 		$this->pseudo = htmlspecialchars($pseudo);
 		$this->mdp = md5(htmlspecialchars($mdp));
-		$this->error = $error;  
+		$this->error = $error;
 
 		if($this->verif($db,$requete) == true)
 		{

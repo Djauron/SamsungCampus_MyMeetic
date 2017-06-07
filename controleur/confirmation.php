@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set("display_errors",1);
+
 if(isset($_GET['pseudo'],$_GET['key']) && !empty($_GET['pseudo']) && !empty($_GET['key'])) 
 {	
 	$userexist = $requete->requeteVerifKey($_GET['pseudo'],$_GET['key'],$db);
